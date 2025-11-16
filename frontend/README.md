@@ -1,4 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend (Next.js)
+
+Next.js app (App Router) for auth, dashboard, resume upload/review, interview UI, and job matching. Talks to the Flask backend via REST + Socket.IO.
+
+## Requirements
+- Node.js 18+ (recommend LTS)
+
+## Setup & Run
+```powershell
+Set-Location "c:\Users\darkloverr\Desktop\test2\frontend"
+npm install
+npm run dev
+# -> http://localhost:3000
+```
+
+## Environment
+Create `.env.local` (optional):
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+Defaults to `http://localhost:8000` if unset. Socket.IO uses the same base URL.
+
+## Scripts
+- `npm run dev` — Next.js dev server
+- `npm run build` — Production build
+- `npm run start` — Start built app
+- `npm run lint` — ESLint
+
+## Code Pointers
+- `lib/api.ts` — Axios client, types, and API methods (auth, upload, review, report, match, footprint, AI aids). Stores JWT in `localStorage`.
+- `lib/socket.ts` — Socket.IO client with helpers for interview session events and face metrics.
+- `app/(auth)/login`, `app/(auth)/register` — Auth pages
+- `app/dashboard` — Main dashboard
+- `app/interview` — Interview surface (consumes Socket.IO events)
+
+## Notes
+- Ensure backend CORS allows `http://localhost:3000`.
+- Auth token persists in `localStorage` as `token`; API client auto‑attaches it.
+- Some endpoints (review/report) call LLMs and may take longer; UI should handle loading states.This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
